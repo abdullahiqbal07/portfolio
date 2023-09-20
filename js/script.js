@@ -68,7 +68,7 @@ ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
 // Software Engineering student
 
 const typed = new Typed(".multiple-text", {
-    strings: ['Software Engineering student', 'Front-end Developer'],
+    strings: ['Software Engineering student', 'Web Developer'],
     typeSpeed: 100,
     backSpeed: 100,
     backDelay: 1000,
