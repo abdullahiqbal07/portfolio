@@ -152,19 +152,20 @@
     <section class="contact" id="contact">
         <h2 class="heading">Contact <span>Me</span></h2>
         
-        <form action="#">
+        <form name="submit-to-google-sheet">
             <div class="input-box">
-                <input type="text" placeholder="Fullname">
-                <input type="email" placeholder="Email-Address">
+                <input type="text" name="Name" placeholder="Fullname">
+                <input type="email" name="Email" placeholder="Email-Address">
             </div>
-            <div class="input-box">
+            <!-- <div class="input-box">
                 <input type="number" placeholder="Mobile number">
-                <input type="text" placeholder="Email-subject">
+                <input type="text" placeholder="Subject">
             </div>
-            
-            <textarea name="" id="" cols="30" rows="10" placeholder="your message"></textarea>
+             -->
+            <textarea name="Message" id="" cols="30" rows="10" placeholder="your message"></textarea>
             <input type="submit" value="Send message" class="btn">
         </form>
+        <span id="msg"></span>
     </section>
     
 
@@ -192,6 +193,23 @@
     
     <script src="js/script.js"></script>
 
-    
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxhh57iDUP3uJDUt8mWCJyY8Y0Fu7p4QBTYT-xXoQHP6-W9k4ohmRw1c2WPEyDA1Yxd/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById('msg');
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML = "Message sent successfully";
+                setTimeout(function (){
+                    msg.innerHTML = "";
+                },1000)
+                form.reset();
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
 </body>
 </html>
