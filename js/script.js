@@ -27,12 +27,12 @@ window.onscroll = () => {
     if (top >= offset && top < offset + height) {
       navLinks.forEach((link) => {
         link.classList.remove("active");
-        document
-          .querySelector("header nav a[href*=" + id + "]")
-          .classList.add("active");
+        document.querySelector("header nav a[href*=" + id + "]").classList.add("active");
       });
+
     }
   });
+
 
   // Steaky nav bar
 
@@ -43,6 +43,8 @@ window.onscroll = () => {
   menuIcon.classList.remove("bx-x");
   navbar.classList.remove("active");
 };
+
+// 
 
 
 // scroll reveal
@@ -62,15 +64,49 @@ ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'left' });
 
 ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
 
+ScrollReveal().reveal('.skills .skills_tabs', { origin: 'left' });
+
+ScrollReveal().reveal('.skills .skills_content', { origin: 'right' });
 
 // typed js
 
 // Software Engineering student
 
 const typed = new Typed(".multiple-text", {
-    strings: ['Software Engineering student', 'Web Developer'],
+    strings: ['Software Engineer', 'Web Developer'],
     typeSpeed: 100,
     backSpeed: 100,
     backDelay: 1000,
     loop: true
 })
+
+
+// skills 
+
+const tabs = document.querySelectorAll('[data-target]');
+const tabContent = document.querySelectorAll('[data-content]');
+
+
+tabs.forEach(
+    tab => {
+        tab.addEventListener(
+            "click", () =>{
+                const target = document.querySelector(tab.dataset.target);
+
+                tabContent.forEach(tabContents => {
+                    tabContents.classList.remove('skills_active');
+                })
+
+                target.classList.add('skills_active');
+
+                tabs.forEach(tab => {
+                    tab.classList.remove('skills_active');
+                })
+
+                tab.classList.add('skills_active');
+
+                
+            }
+        )
+    }
+)
